@@ -11,5 +11,15 @@
       "src": "/api/(.*)",
       "dest": "/api/$1"
     }
+  ],
+  "env": {
+    "MY_ENV_VARIABLE": "value"
+  },
+  "redirects": [
+    {
+      "source": "/old-path",
+      "destination": "/new-path",
+      "permanent": true
+    }
   ]
 }
