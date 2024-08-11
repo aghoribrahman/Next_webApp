@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx, Box, Heading, Image } from 'theme-ui';
 import { Link } from 'components/link';
-import { rgba } from 'polished';
 
 const Widget = ({ title, items }) => {
   return (
@@ -11,8 +10,8 @@ const Widget = ({ title, items }) => {
       <ul>
         {items.map(({ path, label, icon }, i) => (
           <li key={i}>
-            {icon && <Image src={icon} alt={label} />}
-            <Link path={path} key={i} label={label} variant="footer" />
+            {icon && <Image src={icon} alt={label} sx={{ width: '15px', height: '15px', objectFit: 'contain' }} />}
+            <Link path={path} label={label} variant="footer" sx={styles.link} />
           </li>
         ))}
       </ul>
@@ -43,9 +42,15 @@ const styles = {
           mr: '15px',
         },
       },
-      a: {
-        color: rgba('#02073E', 0.8),
+    },
+    link: {
+      display: 'block', // Make each item a block element
+      color: 'heading',
+      transition: 'font-weight 0.3s ease',
+      '&:hover': {
+        fontWeight: 'bold', // Make link bold on hover
       },
+      mb: 2, // Margin-bottom for spacing
     },
   },
 };

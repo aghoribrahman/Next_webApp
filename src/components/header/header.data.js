@@ -5,22 +5,22 @@ export default [
   },
   {
     path: 'services',
-    label: 'Services',
+    label: 'Sectors Tapped',
   },
   {
     path: 'team',
-    label: 'Team',
+    label: 'My Ventures',
   },
   {
     path: 'why-us',
-    label: 'Why Us',
+    label: 'Why These Sectors',
   },
   {
     path: 'blog',
     label: 'Blog',
   },
   {
-    path: 'login',
-    label: 'Login',
+    path: 'subscribe-us',
+    label: 'Contact Us',
   },
 ];

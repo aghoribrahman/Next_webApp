@@ -7,40 +7,107 @@ import Service from 'components/cards/service';
 import icon1 from 'assets/images/icons/service1.png';
 import icon2 from 'assets/images/icons/service2.png';
 import icon3 from 'assets/images/icons/service3.png';
+import { useEffect } from 'react';
 
 const data = [
   {
     id: 1,
     icon: icon1,
-    title: 'Marketing & advertising',
-    description: `Get your info tests delivered at home collect a sample from the your progress tests.`,
+    title: 'Restaurants',
+    description: `Welcome to my culinary world, 
+    where passion meets innovation. 
+    At Monroe Cafe, Mars Canteen, and Mars Outdoor Catering, 
+    we offer unforgettable dining experiences for all tastes and occasions, 
+    with a commitment to quality and creativity in every dish.`,
+  },
+  {
+    id: 2,
+    icon: icon2,
+    title: 'Real Estate',
+    description: `Through Mstay, I offer luxurious farmhouses 
+    that redefine comfort. Nestled in tranquil settings, 
+    these properties are perfect for relaxing getaways or memorable events, 
+    featuring top-notch amenities and personalized services for an unparalleled escape from the ordinary.`,
   },
   {
     id: 3,
-    icon: icon2,
-    title: 'Ultimate development',
-    description: `Get your info tests delivered at home collect a sample from the your progress tests.`,
-  },
-  {
-    id: 4,
     icon: icon3,
-    title: 'Business Enterprise',
-    description: `Get your info tests delivered at home collect a sample from the your progress tests.`,
+    title: 'Export',
+    description: `As the founder of MOMKEEN, 
+    I proudly export premium spices and namkeen 
+    that embody Indian cuisine's rich flavors. 
+    My goal is to share India’s essence globally, 
+    ensuring every product meets the highest standards of authenticity and excellence.`,
   },
 ];
 
 const Services = () => {
+  useEffect(() => {
+    // CSS for animations
+    const css = `
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0; /* Initial state */
+        animation: fadeIn 0.5s forwards; /* Animation */
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s; /* Delay for first text */
+      }
+
+      .delay-2 {
+        animation-delay: 0.4s; /* Delay for second text */
+      }
+
+      .delay-3 {
+        animation-delay: 0.6s; /* Delay for third text */
+      }
+    `;
+
+    // Insert CSS into the document
+    const styleSheet = document.createElement("style");
+    styleSheet.type = "text/css";
+    styleSheet.innerText = css;
+    document.head.appendChild(styleSheet);
+
+    // Cleanup function to remove the style when the component unmounts
+    return () => {
+      document.head.removeChild(styleSheet);
+    };
+  }, []);
+
   return (
     <Box as="section" id="services" sx={styles.section}>
       <Container>
         <SectionHeading
           sx={styles.heading}
-          title="Grow your startup with our Service"
-          description="Build an incredible workplace and grow your business with Gusto’s all-in-one platform with amazing contents."
+          title={<h2 className="fade-in">Three Sectors Where I Provide Services</h2>}
+          description={<p className="fade-in delay-1">My Three Domain</p>}
         />
         <Box sx={styles.contentWrapper}>
-          {data?.map((item) => (
-            <Service key={item.id} item={item} />
+          {data?.map((item, index) => (
+            <Service
+              key={item.id}
+              item={{
+                ...item,
+                title: (
+                  <h3 className={`fade-in delay-${index + 1}`}>{item.title}</h3>
+                ),
+                description: (
+                  <p className={`fade-in delay-${index + 1}`}>{item.description}</p>
+                ),
+              }}
+            />
           ))}
         </Box>
       </Container>

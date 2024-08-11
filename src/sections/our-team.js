@@ -7,157 +7,139 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SectionHeading from 'components/section-heading';
 import TeamMember from 'components/cards/team-member';
 
-import avatar1 from 'assets/images/team/member1.png';
-import avatar2 from 'assets/images/team/member2.png';
-import avatar3 from 'assets/images/team/member3.png';
-import avatar4 from 'assets/images/team/member4.png';
+import avatar1 from 'assets/images/team/1.png';
+import avatar2 from 'assets/images/team/23.png';
+import avatar3 from 'assets/images/team/19.png';
+import avatar4 from 'assets/images/team/18.png';
+import avatar5 from 'assets/images/team/17.png';
+import avatar6 from 'assets/images/team/16.png';
+import avatar7 from 'assets/images/team/15.png';
+import avatar8 from 'assets/images/team/12.png';
+import avatar9 from 'assets/images/team/4.png';
+import avatar10 from 'assets/images/team/10.png';
+import avatar11 from 'assets/images/team/8.png';
+import avatar12 from 'assets/images/team/5.png';
+import avatar13 from 'assets/images/team/11.png';
 import arrowRight from 'assets/images/icons/arrow-right.png';
 
 SwiperCore.use([Navigation, Pagination]);
 
-const data = [
+const teamData = [
   {
     id: 1,
     avatar: avatar1,
-    name: 'Emmalee Mclain',
-    designation: 'Product Designer',
+    name: 'Monroe By Mars',
+    designation: 'Restaurant, Cafe and Canteen',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+      
+    ],
+  },
+  {
+    id: 12,
+    avatar: avatar12,
+    name: 'Mstay',
+    designation: 'Farmhouse and HomeStay Booking',
+    socialLinks: [
+      
     ],
   },
   {
     id: 2,
     avatar: avatar2,
-    name: 'Daisy Morgan',
-    designation: 'Lead developer',
+    name: 'Musk Meadow',
+    designation: 'Farmhouse',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+      
     ],
   },
   {
     id: 3,
     avatar: avatar3,
-    name: 'Ariyanna Hicks',
-    designation: 'Experience Designer',
+    name: 'Full Drink Energy',
+    designation: 'Drink Company',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
+    
     ],
   },
   {
     id: 4,
     avatar: avatar4,
-    name: 'Yamilet Hooker',
-    designation: 'User interface designer',
+    name: 'MNET',
+    designation: 'Software Company',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+
     ],
   },
   {
     id: 5,
-    avatar: avatar1,
-    name: 'Emmalee Mclain',
-    designation: 'Product Designer',
+    avatar: avatar5,
+    name: "M'BIENCE",
+    designation: 'Cafe',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+ 
     ],
   },
   {
     id: 6,
-    avatar: avatar2,
-    name: 'Daisy Morgan',
-    designation: 'Lead developer',
+    avatar: avatar6,
+    name: 'Mealansh',
+    designation: 'Premium Dining',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+     
     ],
   },
   {
     id: 7,
-    avatar: avatar3,
-    name: 'Ariyanna Hicks',
-    designation: 'Experience Designer',
+    avatar: avatar7,
+    name: 'Mars Outdoor',
+    designation: 'Catering',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
+     
     ],
   },
   {
     id: 8,
-    avatar: avatar4,
-    name: 'Yamilet Hooker',
-    designation: 'User interface designer',
+    avatar: avatar8,
+    name: 'Matkalal',
+    designation: 'FastFood',
     socialLinks: [
-      {
-        name: 'twitter',
-        link: 'http://twitter.com',
-      },
-      {
-        name: 'github',
-        link: 'http://github.com',
-      },
-      {
-        name: 'dribbble',
-        link: 'http://dribbble.com',
-      },
+      { name: 'twitter', link: 'http://twitter.com' },
+    ],
+  },
+  {
+    id: 9,
+    avatar: avatar9,
+    name: 'MWATER',
+    designation: 'Water Supply',
+    socialLinks: [
+      { name: 'twitter', link: 'http://twitter.com' },
+    ],
+  },
+  {
+    id: 10,
+    avatar: avatar10,
+    name: 'Maliblu',
+    designation: 'Farmhouse',
+    socialLinks: [
+      { name: 'twitter', link: 'http://twitter.com' },
+    ],
+  },
+  {
+    id: 11,
+    avatar: avatar11,
+    name: 'Mirchi Nimbu',
+    designation: 'Affordable Thali',
+    socialLinks: [
+      { name: 'twitter', link: 'http://twitter.com' },
+    ],
+  },
+  {
+    id: 13,
+    avatar: avatar13,
+    name: 'MYSTYK',
+    designation: 'Decoration Service',
+    socialLinks: [
+      { name: 'twitter', link: 'http://twitter.com' },
     ],
   },
 ];
@@ -166,28 +148,22 @@ const OurTeam = () => {
   const swiperRef = useRef(null);
   const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [containerOffset, setContainerOffset] = useState({
-    left: null,
-    top: null,
-  });
+  const [containerOffset, setContainerOffset] = useState({ left: null, top: null });
 
-  const isEnd = swiperRef?.current?.swiper?.isEnd;
+  const isEnd = swiperRef.current?.swiper?.isEnd;
+
+  const updateCurrentIndex = () => {
+    setCurrentIndex(swiperRef.current?.swiper?.activeIndex);
+  };
 
   const handlePrev = () => {
-    swiperRef?.current?.swiper?.slidePrev();
-    setInterval(() => {
-      setCurrentIndex(swiperRef?.current?.swiper?.activeIndex);
-    }, 100);
-
-    clearInterval();
+    swiperRef.current?.swiper?.slidePrev();
+    updateCurrentIndex();
   };
-  const handleNext = () => {
-    swiperRef?.current?.swiper?.slideNext();
-    setInterval(() => {
-      setCurrentIndex(swiperRef?.current?.swiper?.activeIndex);
-    }, 100);
 
-    clearInterval();
+  const handleNext = () => {
+    swiperRef.current?.swiper?.slideNext();
+    updateCurrentIndex();
   };
 
   useEffect(() => {
@@ -198,22 +174,10 @@ const OurTeam = () => {
   }, [containerRef]);
 
   const breakpoints = {
-    0: {
-      slidesPerView: 1,
-      spaceBetween: 0,
-    },
-    768: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-    1024: {
-      slidesPerView: 4,
-      spaceBetween: 30,
-    },
-    1601: {
-      slidesPerView: 5,
-      spaceBetween: 30,
-    },
+    0: { slidesPerView: 1, spaceBetween: 0 },
+    768: { slidesPerView: 3, spaceBetween: 30 },
+    1024: { slidesPerView: 4, spaceBetween: 30 },
+    1601: { slidesPerView: 5, spaceBetween: 30 },
   };
 
   return (
@@ -221,43 +185,25 @@ const OurTeam = () => {
       <Container ref={containerRef}>
         <SectionHeading
           sx={styles.heading}
-          title="Meet our superheros"
-          description="Build an incredible workplace and grow your business with Gusto’s all-in-one platform with amazing contents."
+          title="My Ventures"
+          description="Build incredible Start-ups and pushed business towards Growth, Showcasing all platforms and Start-ups"
         />
       </Container>
-      <Box
-        sx={{
-          ml: currentIndex === 0 ? containerOffset?.left : 0,
-          ...styles.teamWrapper,
-        }}
-      >
+      <Box sx={{ ml: currentIndex === 0 ? containerOffset?.left : 0, ...styles.teamWrapper }}>
         {currentIndex !== 0 && (
-          <button
-            onClick={handlePrev}
-            className="swiper-arrow swiper-arrow-left"
-          >
+          <button onClick={handlePrev} className="swiper-arrow swiper-arrow-left">
             <Image src={arrowRight} alt="arrow left" />
           </button>
         )}
         {!isEnd && (
-          <button
-            className="swiper-arrow swiper-arrow-right"
-            onClick={handleNext}
-          >
+          <button className="swiper-arrow swiper-arrow-right" onClick={handleNext}>
             <Image src={arrowRight} alt="arrow right" />
           </button>
         )}
-
-        <Swiper
-          ref={swiperRef}
-          spaceBetween={30}
-          watchSlidesVisibility={true}
-          slidesPerView={5}
-          breakpoints={breakpoints}
-        >
-          {data?.map((item) => (
-            <SwiperSlide key={item.id}>
-              <TeamMember member={item} />
+        <Swiper ref={swiperRef} spaceBetween={30} watchSlidesVisibility={true} slidesPerView={5} breakpoints={breakpoints}>
+          {teamData.map((member) => (
+            <SwiperSlide key={member.id}>
+              <TeamMember member={member} />
             </SwiperSlide>
           ))}
         </Swiper>

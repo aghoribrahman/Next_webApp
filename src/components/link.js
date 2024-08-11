@@ -10,7 +10,7 @@ export function NavLink({ path, label, children, ...rest }) {
     <MenuLink
       to={path}
       spy={true}
-      offset={-70}
+      offset={-50}
       smooth={true}
       duration={500}
       className="nav-item"
@@ -24,7 +24,7 @@ export function NavLink({ path, label, children, ...rest }) {
 
 export function Link({ path, label, children, ...rest }) {
   return (
-    <NextLink href={path}>
+    <NextLink href={path} passHref>
       <A {...rest}>{children ? children : label}</A>
     </NextLink>
   );
@@ -32,7 +32,7 @@ export function Link({ path, label, children, ...rest }) {
 
 export function LearnMore({ path, label, children, ...rest }) {
   return (
-    <NextLink href={path}>
+    <NextLink href={path} passHref>
       <A sx={styles.learnMore} {...rest}>
         {label ?? 'Learn More'} <HiOutlineChevronRight />
       </A>
@@ -46,6 +46,7 @@ const styles = {
     cursor: 'pointer',
     fontSize: [1, 1, 1, 2],
     fontWeight: 500,
+    textDecoration: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     svg: {

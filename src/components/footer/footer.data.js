@@ -1,6 +1,6 @@
 import facebook from 'assets/images/icons/facebook.png';
 import twitter from 'assets/images/icons/twitter.png';
-import github from 'assets/images/icons/github.png';
+import github from 'assets/images/icons/instagram.png';
 import dribbble from 'assets/images/icons/dribbble.png';
 
 export const menuItems = [
@@ -87,19 +87,19 @@ export const menuItems = [
     title: 'Connect',
     items: [
       {
-        path: '#!',
+        path: 'https://www.facebook.com/muktansh.jain',
         icon: facebook,
         label: 'Facebook',
       },
       {
-        path: '#!',
+        path: 'https://twitter.com/',
         icon: twitter,
         label: 'Twitter',
       },
       {
-        path: '#!',
+        path: 'https://www.instagram.com/jainmuktansh/?hl=en',
         icon: github,
-        label: 'Github',
+        label: 'Instagram',
       },
       {
         path: '#!',

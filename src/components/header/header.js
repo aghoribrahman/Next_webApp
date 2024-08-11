@@ -1,14 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Container, Button } from 'theme-ui';
+import { jsx, Box, Container, Button, Image } from 'theme-ui';
 import Sticky from 'react-stickynode';
-import Logo from 'components/logo';
 import { NavLink } from 'components/link';
 import { DrawerProvider } from 'contexts/drawer/drawer-provider';
 import NavbarDrawer from './navbar-drawer';
 import menuItems from './header.data';
+import logo1 from 'assets/images/logo12.png';
 
 export default function Header() {
+  const handleButtonClick = () => {
+    window.open('https://www.google.com/search?q=snake+game+on+browser', '_blank');
+  };
+
   return (
     <DrawerProvider>
       <Box sx={styles.headerWrapper}>
@@ -16,7 +20,7 @@ export default function Header() {
           <Box as="header" sx={styles.header}>
             <Container>
               <Box sx={styles.headerInner}>
-                <Logo sx={styles.logo} />
+                <Image src={logo1} alt="Logo" sx={styles.logo} />
                 <Box as="nav" sx={styles.navbar} className="navbar">
                   <Box as="ul" sx={styles.navList}>
                     {menuItems.map(({ path, label }, i) => (
@@ -25,12 +29,12 @@ export default function Header() {
                       </li>
                     ))}
                   </Box>
-                  <Button variant="text" sx={styles.getStartedDesktop}>
-                    Get Started
+                  <Button variant="text" sx={styles.getStartedDesktop} onClick={handleButtonClick}>
+                    Hello Visitor
                   </Button>
                 </Box>
-                <Button variant="text" sx={styles.getStartedMobile}>
-                  Get Started
+                <Button variant="text" sx={styles.getStartedMobile} onClick={handleButtonClick}>
+                  Hello Visitor
                 </Button>
                 <NavbarDrawer />
               </Box>
@@ -50,7 +54,7 @@ const styles = {
         backgroundColor: 'white',
         boxShadow: '0 6px 13px rgba(38,78,118,0.1)',
         paddingTop: '15px',
-        paddingBottom: '15px',
+        paddingBottom: '10px',
       },
     },
   },
@@ -70,18 +74,18 @@ const styles = {
     justifyContent: 'space-between',
   },
   logo: {
-    mr: [null, null, null, null, 6, 12],
+    width: ['100px', '120px', '150px'], // Responsive width for the logo
+    height: 'auto', // Maintain aspect ratio
+    mr: [null, null, null, null, 6, 6],
   },
   navbar: {
     display: ['none', null, null, null, 'flex'],
     alignItems: 'center',
     flexGrow: 1,
-    // justifyContent: 'center',
   },
   navList: {
     display: ['flex'],
     listStyle: 'none',
-    // marginLeft: 'auto',
     flexGrow: 1,
     p: 0,
     'li:last-child': {
@@ -89,7 +93,7 @@ const styles = {
     },
     '.nav-item': {
       cursor: 'pointer',
-      fontWeight: 400,
+      fontWeight: 300,
       padding: 0,
       margin: [0, 0, 0, 0, '0 20px'],
     },
@@ -106,7 +110,7 @@ const styles = {
     fontSize: [1],
     minHeight: 30,
     m: ['0 15px 0 auto'],
-    padding: '0 11px',
+    padding: '0 5px',
     display: ['flex', null, null, null, 'none'],
   },
   closeButton: {
@@ -119,4 +123,4 @@ const styles = {
       stroke: 'text',
     },
   },
-};
+}

@@ -6,7 +6,7 @@ import { jsx, Box, Image } from 'theme-ui';
 import { Link } from 'react-scroll';
 import { DrawerContext } from 'contexts/drawer/drawer-context';
 import Drawer from 'components/drawer';
-import Logo from 'components/logo';
+import Logo from 'assets/images/logo12.png';
 import menuItems from './header.data';
 import close from 'assets/images/icons/close.png';
 
@@ -41,7 +41,7 @@ const DrawerNav = () => {
       closeBtnStyle={styles.close}
     >
       <Box sx={styles.wrapper}>
-        <Logo sx={styles.logo} />
+        <Image src={Logo} sx={styles.mlogo} />
         <Box as="ul" sx={styles.navbar}>
           {menuItems.map(({ path, label }, i) => (
             <Box as="li" key={i}>
@@ -62,6 +62,7 @@ const DrawerNav = () => {
     </Drawer>
   );
 };
+
 export default DrawerNav;
 
 const styles = {
@@ -76,6 +77,7 @@ const styles = {
       display: 'none',
     },
   },
+  
   drawer: {
     backgroundColor: 'white',
     width: '100%',
@@ -102,11 +104,16 @@ const styles = {
   wrapper: {
     height: '100%',
     paddingTop: 30,
-    width: '100%',
+    width: '100%', 
   },
   logo: {
     ml: 30,
     mb: 45,
+  },
+  mlogo: {
+    height: '20%',
+    width: '70%',
+    ml: '50px',
   },
   navbar: {
     listStyle: 'none',
@@ -131,11 +138,17 @@ const styles = {
         width: 2,
         transition: 'all 0.3s ease-in-out 0s',
       },
+      '&:hover': {
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)', // Add shadow on hover
+      },
     },
     '.active': {
       backgroundColor: '#F8F8F8',
       '::before': {
         backgroundColor: 'primary',
+      },
+      '&:hover': {
+        boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.2)', // Add shadow on hover for active element
       },
     },
   },

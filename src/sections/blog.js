@@ -4,50 +4,24 @@ import { jsx, Box, Container } from 'theme-ui';
 import Masonry from 'react-masonry-component';
 import SectionHeading from 'components/section-heading';
 import BlogPost from 'components/cards/blog-post';
-import thumb1 from 'assets/images/blog/1.png';
-import thumb2 from 'assets/images/blog/2.png';
-import thumb3 from 'assets/images/blog/3.png';
-import thumb4 from 'assets/images/blog/4.png';
+import thumb1 from 'assets/images/team/1.png';
+
 
 const data = [
   {
     id: 1,
-    slug: '#how-to',
+    slug: 'https://www.knocksense.com/indore/indore-city/the-monroe-in-indore-is-the-perfect-vegetarian-only-hangout-for-the-month-of-shraavana',
     thumbnail: thumb1,
     showDescription: true,
-    title: `How to work with prototype design with adobe xd featuring tools`,
-    description: `The 2019 Innovation by Design Awards honor the designers and businesses solving the problems of today and tomorrow. It is one of the most sought-after design`,
+    title: `‘The Monroe’ in Indore is the perfect vegetarian only hangout for the month of Shraavana`,
+    description: `The Monroe Cafe in New Palasia, Indore, is a rooftop cafe and restaurant in the city that has received much attention. The cafe is Madhya Pradesh’s first IOT, an IIT Operated Cafe, where calling the servers, asking for the bill or another drink can be done by a buzzer kept on the table. The concept is that it would send the servers directly to you without having to wait for them if they’re inside the kitchen or busy serving someone else. It would also cut all the yelling, “shhh shh”, “bhaiya” and “excuse me”s that we use to beckon the servers.`,
   },
   {
     id: 2,
-    slug: '#how-to',
+    slug: 'https://yometro.com/travel-guide/attraction-the-monroe-indore',
     thumbnail: null,
     showDescription: false,
-    title: `Anti bias receives honorable gift mention at Fast Company’s most Innovation by Design Awards`,
-    description: `The 2019 Innovation by Design Awards honor the designers and businesses solving the problems of today and tomorrow. It is one of the most sought-after design`,
-  },
-  {
-    id: 3,
-    slug: '#how-to',
-    thumbnail: thumb3,
-    showDescription: false,
-    title: `Multiple task wireframing with team management perform better`,
-    description: `The 2019 Innovation by Design Awards honor the designers and businesses solving the problems of today and tomorrow. It is one of the most sought-after design`,
-  },
-  {
-    id: 4,
-    slug: '#how-to',
-    thumbnail: thumb2,
-    showDescription: true,
-    title: `Multiple art board prototype with Figma`,
-    description: `Beyond launched anti bias, a Chrome extension that replaces LinkedIn profile photos`,
-  },
-  {
-    id: 5,
-    slug: '#how-to',
-    thumbnail: thumb4,
-    showDescription: false,
-    title: `Team presentation with latest user interface & experience reach more`,
+    title: `This is an LED themed gazebo-style rooftop cafe located near Chappan Dukan. It is a multi-cuisine meal that serves Chinese, Italian and vegetarian Indian cuisine.`,
     description: `The 2019 Innovation by Design Awards honor the designers and businesses solving the problems of today and tomorrow. It is one of the most sought-after design`,
   },
 ];

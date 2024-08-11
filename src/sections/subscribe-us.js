@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { useState, useCallback } from 'react';
-import { jsx, Box, Container, Button, Flex, Checkbox, Label } from 'theme-ui';
+import { jsx, Box, Container, Button, Flex, Checkbox, Label, Input as ThemeInput, Textarea } from 'theme-ui';
 import { rgba } from 'polished';
 import SectionHeading from 'components/section-heading';
 import Input from 'components/input';
@@ -9,10 +9,28 @@ import illustration from 'assets/images/subscribe-bg.png';
 
 const SubscribeUs = () => {
   const [checked, setChecked] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted.');
+    console.log(formData);
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      message: '',
+    });
+    setShowMessage(true);
   };
 
   const handleCheckbox = useCallback(() => {
@@ -20,44 +38,55 @@ const SubscribeUs = () => {
   }, [checked]);
 
   return (
-    <Box as="section" sx={styles.section} variant="section.subscribe">
+    <Box as="section" id="subscribe-us" sx={styles.section} variant="section.subscribe">
       <Container>
         <Box sx={styles.contentWrapper}>
           <SectionHeading
             sx={styles.heading}
-            title="Like our service? Subscribe us"
-            description="We have more than thousand of creative entrepreneurs and stat joining our business"
+            title="Get in touch with us"
+            description="Fill out the form below and we'll get back to you as soon as possible."
           />
-          <Box as="form" sx={styles.subscribe} onSubmit={handleSubmit}>
-            <Flex sx={styles.inputGroup}>
-              <Label htmlFor="email" variant="styles.srOnly">
-                Email
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                className="email-input"
-                placeholder="Enter Email address"
-              />
-              <Button variant="secondary">Subscribe</Button>
-            </Flex>
-            <Box sx={styles.checkbox}>
-              <Label htmlFor="no_spam" className={checked ? 'checked' : ''}>
-                <Checkbox
-                  id="no_spam"
-                  onChange={handleCheckbox}
-                  defaultChecked={checked}
-                />
-                Don’t provide any promotional message.
-              </Label>
-              {/* <Checkbox
-                id="no_spam"
-                checked={checked}
-                onChange={handleCheckbox}
-                label="Don’t provide any promotional message."
-              /> */}
+          {showMessage ? (
+            <Box sx={styles.message}>
+              <h3>Thank you for your message!</h3>
+              <p>We'll get back to you as soon as possible.</p>
             </Box>
-          </Box>
+          ) : (
+            <Box as="form" sx={styles.form} onSubmit={handleSubmit}>
+              <ThemeInput
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleInputChange}
+                placeholder="Full Name"
+                mb={3}
+              />
+              <ThemeInput
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Email"
+                mb={3}
+              />
+              <ThemeInput
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="Phone Number"
+                mb={3}
+              />
+              <Textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                placeholder="Message"
+                mb={3}
+              />
+              <Button type="submit" variant="secondary">
+                Submit
+              </Button>
+            </Box>
+          )}
         </Box>
       </Container>
     </Box>
@@ -101,19 +130,26 @@ const styles = {
       maxWidth: 420,
     },
   },
-  subscribe: {
-    '.email-input': {
-      mr: [0, null, null, '15px'],
-      minHeight: ['50px', '50px', '60px'],
-    },
+  form: {
+    display: 'grid',
+    gap: 3,
     button: {
       minHeight: ['50px', '50px', '60px'],
       fontSize: ['14px', '14px', '16px'],
-      mt: ['15px', null, null, 0],
     },
   },
-  inputGroup: {
-    flexDirection: ['column', null, null, 'row'],
+  message: {
+    textAlign: 'center',
+    padding: '40px 0',
+    h3: {
+      fontSize: '24px',
+      fontWeight: 'bold',
+      marginBottom: '10px',
+    },
+    p: {
+      fontSize: '16px',
+      color: '#666',
+    },
   },
   checkbox: {
     mt: ['24px'],

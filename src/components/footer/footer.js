@@ -1,11 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Text, Container } from 'theme-ui';
-import Logo from 'components/logo';
+import { jsx, Box, Text, Container, Image, Heading } from 'theme-ui';
 import { Link } from 'components/link';
-import Widget from './widget';
 import { menuItems } from './footer.data';
 import { rgba } from 'polished';
+import logo12 from '../../assets/images/logo12.png';
 
 export default function Footer() {
   return (
@@ -14,7 +13,7 @@ export default function Footer() {
         <Box sx={styles.footerTopInner}>
           <Box sx={styles.about}>
             <Box sx={styles.logo}>
-              <Logo />
+              <Image src={logo12} alt="Logo" />
             </Box>
             <Box sx={styles.terms}>
               <Link path="#!">Terms of use</Link>
@@ -22,12 +21,24 @@ export default function Footer() {
               <Link path="#!">Privacy</Link>
             </Box>
             <Text as="p" sx={styles.copyright}>
-              Copyright by {new Date().getFullYear()} RedQ, Inc
+              Copyright by {new Date().getFullYear()} Monroe, Inc
             </Text>
           </Box>
-          {menuItems.map(({ id, title, items }) => (
-            <Widget key={id} title={title} items={items} />
+          
+          {menuItems.map(({ id, title, items, path }) => (
+            <Box key={id} sx={styles.footerWidget}>
+              <Heading as="h4">{title}</Heading>
+              <ul>
+                {items.map(({ path, label, icon }, i) => (
+                  <li key={i} sx={styles.menuItem}>
+                    {icon && <Image src={icon} alt={label} sx={{ marginRight:'5px', width: '15px', height: '15px', objectFit: 'contain' }} />}
+                    <Link path={path} label={label} variant="footer" sx={styles.link} />
+                  </li>
+                ))}
+              </ul>
+            </Box>
           ))}
+          
         </Box>
       </Container>
     </Box>
@@ -50,13 +61,6 @@ const styles = {
       'repeat(5, 1fr)',
     ],
   },
-  footerInner: {
-    borderTop: `1px solid #D9E0E7`,
-    display: ['block', null, 'flex'],
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '35px 0 40px',
-  },
   about: {
     display: [null, null, null, 'grid', 'block'],
     gridTemplateColumns: '205px 1fr 1fr',
@@ -68,6 +72,10 @@ const styles = {
     display: ['flex'],
     justifyContent: ['center', null, null, 'unset'],
     gridColumn: '1/2',
+    img: {
+      maxWidth: ['200px', null, null, '100%'], // Reduce logo size for mobile
+      height: 'auto', // Maintain aspect ratio
+    },
   },
   terms: {
     display: ['flex'],
@@ -82,9 +90,13 @@ const styles = {
       null,
       'flex-start',
     ],
-    mt: [4, null, null, 0, 4],
+    
     a: {
       color: 'heading',
+      transition: 'font-weight 0.3s ease', // Smooth transition for font weight
+      '&:hover': {
+        fontWeight: 'bold', // Make link bold on hover
+      },
     },
     span: {
       display: ['inline-flex', null, null, null, 'none', 'inline-flex'],
@@ -98,5 +110,35 @@ const styles = {
     mr: [null, null, null, 'auto', 'unset'],
     gridColumn: '2/3',
     textAlign: ['center', null, 'left', 'center', 'left'],
+  },
+  footerWidget: {
+    // Styles for the widget container
+    mb: [4], // Margin-bottom for spacing between widgets
+    h4: {
+      color: 'heading',
+      fontFamily: 'body',
+      fontSize: '18px',
+      fontWeight: 500,
+      lineHeight: 1.68,
+      letterSpacing: 'heading',
+    },
+    ul: {
+      listStyle: 'none',
+  
+      padding: 0,
+    },
+  },
+  menuItem: {
+    display: 'flex', // Ensure items are displayed in a flex container
+    alignItems: 'center', // Center align items
+  },
+  link: {
+    display: 'block', // Make each item a block element
+    color: 'heading',
+    transition: 'font-weight 0.3s ease',
+    '&:hover': {
+      fontWeight: 'bold', // Make link bold on hover
+    },
+    
   },
 };
