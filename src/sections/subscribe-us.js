@@ -1,10 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { useState, useCallback } from 'react';
-import { jsx, Box, Container, Button, Flex, Checkbox, Label, Input as ThemeInput, Textarea } from 'theme-ui';
-import { rgba } from 'polished';
+import { jsx, Box, Container, Button, Textarea, Input as ThemeInput } from 'theme-ui';
 import SectionHeading from 'components/section-heading';
-import Input from 'components/input';
 import illustration from 'assets/images/subscribe-bg.png';
 
 const SubscribeUs = () => {
@@ -16,21 +14,43 @@ const SubscribeUs = () => {
     message: '',
   });
   const [showMessage, setShowMessage] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
-    setShowMessage(true);
+    setIsSubmitting(true);
+
+    const scriptURL = 'https://formbold.com/s/9x2QE'; // Your Getform endpoint URL
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+
+      if (response.ok) {
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+        setShowMessage(true); // Show the thank-you message
+      } else {
+        console.error('Error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error!', error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCheckbox = useCallback(() => {
@@ -48,7 +68,7 @@ const SubscribeUs = () => {
           />
           {showMessage ? (
             <Box sx={styles.message}>
-              <h3>Thank you for your message!</h3>
+              <h3>Thank you for your submission!</h3>
               <p>We'll get back to you as soon as possible.</p>
             </Box>
           ) : (
@@ -82,8 +102,8 @@ const SubscribeUs = () => {
                 placeholder="Message"
                 mb={3}
               />
-              <Button type="submit" variant="secondary">
-                Submit
+              <Button type="submit" variant="secondary" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit'}
               </Button>
             </Box>
           )}
@@ -160,7 +180,7 @@ const styles = {
       fontSize: '14px',
       fontWeight: 400,
       lineHeight: 1.14,
-      color: rgba('#9095AD', 0.9),
+      color: '#9095AD', // Solid color instead of rgba
       zIndex: 10,
       svg: {
         path: {

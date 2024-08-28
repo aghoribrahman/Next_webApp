@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useMemo } from 'react';
 import { jsx, Box, Container, Image } from 'theme-ui';
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -25,135 +25,33 @@ import arrowRight from 'assets/images/icons/arrow-right.png';
 SwiperCore.use([Navigation, Pagination]);
 
 const teamData = [
-  {
-    id: 1,
-    avatar: avatar1,
-    name: 'Monroe By Mars',
-    designation: 'Restaurant, Cafe and Canteen',
-    socialLinks: [
-      
-    ],
-  },
-  {
-    id: 12,
-    avatar: avatar12,
-    name: 'Mstay',
-    designation: 'Farmhouse and HomeStay Booking',
-    socialLinks: [
-      
-    ],
-  },
-  {
-    id: 2,
-    avatar: avatar2,
-    name: 'Musk Meadow',
-    designation: 'Farmhouse',
-    socialLinks: [
-      
-    ],
-  },
-  {
-    id: 3,
-    avatar: avatar3,
-    name: 'Full Drink Energy',
-    designation: 'Drink Company',
-    socialLinks: [
-    
-    ],
-  },
-  {
-    id: 4,
-    avatar: avatar4,
-    name: 'MNET',
-    designation: 'Software Company',
-    socialLinks: [
-
-    ],
-  },
-  {
-    id: 5,
-    avatar: avatar5,
-    name: "M'BIENCE",
-    designation: 'Cafe',
-    socialLinks: [
- 
-    ],
-  },
-  {
-    id: 6,
-    avatar: avatar6,
-    name: 'Mealansh',
-    designation: 'Premium Dining',
-    socialLinks: [
-     
-    ],
-  },
-  {
-    id: 7,
-    avatar: avatar7,
-    name: 'Mars Outdoor',
-    designation: 'Catering',
-    socialLinks: [
-     
-    ],
-  },
-  {
-    id: 8,
-    avatar: avatar8,
-    name: 'Matkalal',
-    designation: 'FastFood',
-    socialLinks: [
-      { name: 'twitter', link: 'http://twitter.com' },
-    ],
-  },
-  {
-    id: 9,
-    avatar: avatar9,
-    name: 'MWATER',
-    designation: 'Water Supply',
-    socialLinks: [
-      { name: 'twitter', link: 'http://twitter.com' },
-    ],
-  },
-  {
-    id: 10,
-    avatar: avatar10,
-    name: 'Maliblu',
-    designation: 'Farmhouse',
-    socialLinks: [
-      { name: 'twitter', link: 'http://twitter.com' },
-    ],
-  },
-  {
-    id: 11,
-    avatar: avatar11,
-    name: 'Mirchi Nimbu',
-    designation: 'Affordable Thali',
-    socialLinks: [
-      { name: 'twitter', link: 'http://twitter.com' },
-    ],
-  },
-  {
-    id: 13,
-    avatar: avatar13,
-    name: 'MYSTYK',
-    designation: 'Decoration Service',
-    socialLinks: [
-      { name: 'twitter', link: 'http://twitter.com' },
-    ],
-  },
+  { id: 1, avatar: avatar1, name: 'Monroe By Mars', designation: 'Restaurant, Cafe and Canteen' },
+  { id: 12, avatar: avatar12, name: 'Mstay', designation: 'Farmhouse and HomeStay Booking' },
+  { id: 2, avatar: avatar2, name: 'Musk Meadow', designation: 'Farmhouse' },
+  { id: 3, avatar: avatar3, name: 'Full Drink Energy', designation: 'Drink Company' },
+  { id: 4, avatar: avatar4, name: 'MNET', designation: 'Software Company' },
+  { id: 5, avatar: avatar5, name: "M'BIENCE", designation: 'Cafe' },
+  { id: 6, avatar: avatar6, name: 'Mealansh', designation: 'Premium Dining' },
+  { id: 7, avatar: avatar7, name: 'Mars Outdoor', designation: 'Catering' },
+  { id: 8, avatar: avatar8, name: 'Matkalal', designation: 'FastFood', socialLinks: [{ name: 'twitter', link: 'http://twitter.com' }] },
+  { id: 9, avatar: avatar9, name: 'MWATER', designation: 'Water Supply', socialLinks: [{ name: 'twitter', link: 'http://twitter.com' }] },
+  { id: 10, avatar: avatar10, name: 'Maliblu', designation: 'Farmhouse', socialLinks: [{ name: 'twitter', link: 'http://twitter.com' }] },
+  { id: 11, avatar: avatar11, name: 'Mirchi Nimbu', designation: 'Affordable Thali', socialLinks: [{ name: 'twitter', link: 'http://twitter.com' }] },
+  { id: 13, avatar: avatar13, name: 'MYSTYK', designation: 'Decoration Service', socialLinks: [{ name: 'twitter', link: 'http://twitter.com' }] },
 ];
 
 const OurTeam = () => {
   const swiperRef = useRef(null);
   const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [containerOffset, setContainerOffset] = useState({ left: null, top: null });
+  const [containerOffset, setContainerOffset] = useState({ left: 0, top: 0 });
 
   const isEnd = swiperRef.current?.swiper?.isEnd;
 
   const updateCurrentIndex = () => {
-    setCurrentIndex(swiperRef.current?.swiper?.activeIndex);
+    if (swiperRef.current?.swiper) {
+      setCurrentIndex(swiperRef.current.swiper.activeIndex);
+    }
   };
 
   const handlePrev = () => {
@@ -167,18 +65,20 @@ const OurTeam = () => {
   };
 
   useEffect(() => {
-    setContainerOffset({
-      left: containerRef.current.offsetLeft,
-      top: containerRef.current.offsetTop,
-    });
-  }, [containerRef]);
+    if (containerRef.current) {
+      setContainerOffset({
+        left: containerRef.current.offsetLeft || 0,
+        top: containerRef.current.offsetTop || 0,
+      });
+    }
+  }, []);
 
-  const breakpoints = {
+  const breakpoints = useMemo(() => ({
     0: { slidesPerView: 1, spaceBetween: 0 },
     768: { slidesPerView: 3, spaceBetween: 30 },
     1024: { slidesPerView: 4, spaceBetween: 30 },
     1601: { slidesPerView: 5, spaceBetween: 30 },
-  };
+  }), []);
 
   return (
     <Box as="section" id="team" sx={styles.section}>
@@ -189,7 +89,7 @@ const OurTeam = () => {
           description="Build incredible Start-ups and pushed business towards Growth, Showcasing all platforms and Start-ups"
         />
       </Container>
-      <Box sx={{ ml: currentIndex === 0 ? containerOffset?.left : 0, ...styles.teamWrapper }}>
+      <Box sx={{ ml: currentIndex === 0 ? containerOffset.left : 0, ...styles.teamWrapper }}>
         {currentIndex !== 0 && (
           <button onClick={handlePrev} className="swiper-arrow swiper-arrow-left">
             <Image src={arrowRight} alt="arrow left" />
@@ -200,7 +100,13 @@ const OurTeam = () => {
             <Image src={arrowRight} alt="arrow right" />
           </button>
         )}
-        <Swiper ref={swiperRef} spaceBetween={30} watchSlidesVisibility={true} slidesPerView={5} breakpoints={breakpoints}>
+        <Swiper
+          ref={swiperRef}
+          spaceBetween={30}
+          watchSlidesVisibility={true}
+          slidesPerView={5}
+          breakpoints={breakpoints}
+        >
           {teamData.map((member) => (
             <SwiperSlide key={member.id}>
               <TeamMember member={member} />
@@ -244,7 +150,7 @@ const styles = {
       borderRadius: '50%',
       position: 'absolute',
       zIndex: 2,
-      top: 'calc(50% - 40px)',
+      top: '50%',
       transform: 'translateY(-50%)',
       outline: 0,
       img: {
